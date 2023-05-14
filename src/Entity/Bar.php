@@ -13,12 +13,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Entity(repositoryClass: BarRepository::class)]
 #[ApiResource(
     operations: [
-        new Get(
-            normalizationContext: [
-                'groups' => ['bar:read'],
-            ]
-        )
-    ],
+        new Get()
+    ]
 )]
 class Bar
 {
@@ -29,7 +25,7 @@ class Bar
     private ?int $id = null;
 
     #[ORM\OneToMany(mappedBy: 'bar', targetEntity: Foo::class)]
-    #[Groups(['bar:read'])]
+    #[Groups(['bar:item:read'])]
     private Collection $foos;
 
     public function __construct()
