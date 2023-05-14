@@ -11,11 +11,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Entity(repositoryClass: FooRepository::class)]
 #[ApiResource(
     operations: [
-        new GetCollection(
-            normalizationContext: [
-                'groups' => ['foo:read'],
-            ]
-        )
+        new GetCollection()
     ],
 )]
 class Foo
@@ -23,11 +19,11 @@ class Foo
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['foo:read', 'bar:read'])]
+    #[Groups(['foo:read', 'bar:item:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['foo:read', 'bar:read'])]
+    #[Groups(['foo:read', 'bar:item:read'])]
     private ?string $type = null;
 
     #[ORM\Column(length: 255, nullable: true)]
